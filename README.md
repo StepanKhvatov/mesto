@@ -1,6 +1,6 @@
 # **Russian-travel**
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
-https://stepankhvatov.github.io/russian-travel/
+https://stepankhvatov.github.io/mesto/
 ___
 Данный проэкт позволит пользователю добавлять изображения городов России и ставить лайки этим фото. В данный момент функция добавления фото и оценки недоступна.
 ___
