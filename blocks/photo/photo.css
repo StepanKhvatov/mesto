@@ -1,0 +1,10 @@
+@import url(./__like-button/photo__like-button.css);
+@import url(./__place/photo__place.css);
+@import url(./__title/photo__title.css);
+
+.photo {
+  background: #FFFFFF;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
