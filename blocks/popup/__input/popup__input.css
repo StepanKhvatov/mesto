@@ -1,14 +1,10 @@
-.popup__input-name {
+.popup__input {
   width: 358px;
   border: none;
   border-bottom: 1px solid #000000;
   margin-bottom: 30px;
   height: 27px;
   text-overflow: ellipsis;
+  width: 100%;
 }
 
-@media screen and (max-width: 515px) {
-  .popup__input-name {
-    width: 100%;
-  }
-}

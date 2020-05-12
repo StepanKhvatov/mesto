@@ -1,15 +1,15 @@
 .photo__like-button {
-  position: absolute;
   width: 20px;
   height: 20px;
-  bottom: 31px;
-  right: 18px;
   background-image: url(../../../images/like.svg);
   background-size: contain;
   object-position: center;
   border-style: none;
   background-color: white;
   background-repeat: no-repeat;
+  transition: opacity 0.3s linear;
+  margin-right: 20px;
+  transform: translate(0, 3px);
 }
 
 .photo__like-button:focus {
@@ -17,5 +17,6 @@
 }
 
 .photo__like-button:hover {
+  opacity: 0.6;
   cursor: pointer;
 }

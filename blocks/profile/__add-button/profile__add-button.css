@@ -4,10 +4,12 @@
   border: 2px solid #FFFFFF;
   border-radius: 2px;
   margin-left: auto;
-  background-image: url(../../../images/Add\ Button.svg);
-  background-position: center;
-  background-color: black;
+  background-image: url(../../../images/add-button.svg);
   transition: opacity 0.3s linear;
+  background-color: transparent;
+  background-size: contain;
+  padding: 0;
+  background-position: center;
 }
 
 .profile__add-button:focus {

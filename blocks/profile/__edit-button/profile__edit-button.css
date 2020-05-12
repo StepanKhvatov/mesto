@@ -1,17 +1,16 @@
 .profile__edit-button {
   width: 24px;
   height: 24px;
-  background-image: url(../../../images/Edit\ Button.svg);
+  background-image: url(../../../images/edit-button.svg);
   background-size: cover;
   background-color: black;
   padding: 0;
-  border: 1px solid #FFFFFF;
-  margin-left: 17px;
+  border: none;
   transition: opacity 0.3s linear;
-  /* transform: translate(0, -7px); */
-  position: absolute;
-  top: 20px;
-  right: -40px;
+  grid-column: 2/3;
+  grid-row: 1/2;
+  align-self: center;
+  transform: translate(17px, 3px);
 }
 
 .profile__edit-button:focus {

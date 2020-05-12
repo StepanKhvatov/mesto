@@ -4,9 +4,9 @@
   border-radius: 2px;
   color: white;
   width: 358px;
-  height: 50px;
   margin-top: 18px;
   transition: opacity 0.3s linear;
+  padding: 18px;
 }
 
 .popup__submit-button:focus {

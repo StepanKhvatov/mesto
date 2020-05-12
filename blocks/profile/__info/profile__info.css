@@ -1,6 +1,9 @@
 .profile__info {
   color: white;
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr 20px;
+  grid-template-rows: 2;
 }
 
 
