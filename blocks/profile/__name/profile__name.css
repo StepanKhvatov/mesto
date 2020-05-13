@@ -2,7 +2,7 @@
   margin: 0;
   font-style: normal;
   font-weight: 500;
-  font-size: 42px;
+  font-size: 2.625em;
   line-height: 56px;
   color: white;
   text-overflow: ellipsis;
@@ -13,6 +13,14 @@
 
 @media screen and (max-width: 700px){
   .profile__name {
-    font-size: 27px;
+    font-size: 1.688em;
+    line-height: 50px;
+
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile__name {
+    margin-left: 25px;
   }
 }

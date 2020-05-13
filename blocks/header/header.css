@@ -5,7 +5,13 @@
   margin-top: 45px;
   margin-bottom: 40px;
   max-width: 882px;
-  height: 74px;
   border-bottom: 1px solid #545454;
   background-color: black;
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    margin-top: 28px;
+    margin-bottom: 42px;
+  }
 }

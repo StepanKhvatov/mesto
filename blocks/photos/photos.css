@@ -11,3 +11,9 @@
   margin-bottom: 66px;
   padding: 0;
 }
+
+@media screen and (max-width: 500px) {
+  .photos {
+    margin-bottom: 48px;
+  }
+}
