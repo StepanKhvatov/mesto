@@ -1,0 +1,32 @@
+.photo-popup__close-button {
+  width: 60px;
+  height: 60px;
+  background-image: url(../../../images/close-button.svg);
+  background-size: cover;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  top: -49px;
+  right: -47px;
+  transition: opacity 0.3s linear;
+}
+
+.photo-popup__close-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.photo-popup__close-button:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 340px) {
+  .photo-popup__close-button {
+    width: 40px;
+    height: 40px;
+    top: -35px;
+    right: -35px;
+  }
+
+}

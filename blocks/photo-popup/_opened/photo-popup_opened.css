@@ -1,4 +1,7 @@
-.popup_opened {
+.photo-popup_opened {
   display: flex;
   animation: fadeIn 0.3s;
 }
+
+
+

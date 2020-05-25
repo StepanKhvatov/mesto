@@ -20,50 +20,7 @@
       </div>
       <button class="profile__add-button"></button>
     </section>
-    <section class="photos">
-      <article class="photo">
-        <img class="photo__place" src="./images/photo/barnaul.jpg" alt="Вид на Барнаул">
-        <div class="photo__caption">
-          <h2 class="photo__title">Барнаул</h2>
-          <button class="photo__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="photo">
-        <img class="photo__place" src="./images/photo/krasnodar.jpg" alt="Фонтан">
-        <div class="photo__caption">
-          <h2 class="photo__title">Краснодар</h2>
-          <button class="photo__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="photo">
-        <img class="photo__place" src="./images/photo/murmansk.jpg" alt="Маяк">
-        <div class="photo__caption">
-          <h2 class="photo__title">Мурманск</h2>
-          <button class="photo__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="photo">
-        <img class="photo__place" src="./images/photo/novosibirsk.jpg" alt="Вид на оперный театр">
-        <div class="photo__caption">
-          <h2 class="photo__title">Новосибирск</h2>
-          <button class="photo__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="photo">
-        <img class="photo__place" src="./images/photo/peterburg.jpg" alt="Мост через Неву">
-        <div class="photo__caption">
-          <h2 class="photo__title">Санкт-Петербург</h2>
-          <button class="photo__like-button" type="button"></button>
-        </div>
-      </article>
-      <article class="photo">
-        <img class="photo__place" src="./images/photo/vladivostok.jpg" alt="Ночной вид Владивостока">
-        <div class="photo__caption">
-          <h2 class="photo__title">Владивосток</h2>
-          <button class="photo__like-button" type="button"></button>
-        </div>
-      </article>
-    </section>
+    <section class="photos"></section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
@@ -72,13 +29,30 @@
     <div class="popup__container">
       <form class="popup__form">
         <button class="popup__close-button" type="reset"></button>
-        <h3 class="popup__heading">Редактировать профиль</h3>
-        <input id="input-name" class="popup__input" type="text" placeholder="Жак-Ив Кусто" >
-        <input id="input-about" class="popup__input" type="text" placeholder="Исследователь океана">
-        <button class="popup__submit-button" type="submit">Сохранить</button>
+        <h3 class="popup__heading"></h3>
+        <input id="input-name" class="popup__input" type="text" required>
+        <input id="input-about" class="popup__input" type="text" required>
+        <button class="popup__submit-button" type="submit"></button>
       </form>
     </div>
   </div>
+  <div class="photo-popup">
+    <figure class="photo-popup__image-container">
+      <button class="photo-popup__close-button" type="reset"></button>
+      <img class="photo-popup__image" alt="Не определено" src="null">
+      <figcaption class="photo-popup__caption"></figcaption>
+    </figure>
+  </div>
+  <template id="photo-template">
+    <article class="photo">
+      <button class="photo__delete-button" type="button"></button>
+      <img class="photo__place">
+      <div class="photo__caption">
+        <h2 class="photo__title"></h2>
+        <button class="photo__like-button" type="button"></button>
+      </div>
+    </article>
+  </template>
   <script src="script.js"></script>
 </body>
 </html>

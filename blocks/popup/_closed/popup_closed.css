@@ -1,0 +1,4 @@
+.popup_closed {
+  display: flex;
+  animation: fadeOut 0.3s;
+}
