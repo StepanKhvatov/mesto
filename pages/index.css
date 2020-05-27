@@ -6,13 +6,10 @@
 @import url(../blocks/photo/photo.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
-@Import url(../blocks/popup/_closed/popup_closed.css);
 @import url(../blocks/photo-popup/photo-popup.css);
 @import url(../blocks/photo-popup/_opened/photo-popup_opened.css);
-@import url(../blocks/photo-popup/_closed/photo-popup_closed.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/page/page.css);
-@import url(../blocks/fading/fading.css);
 
 
 

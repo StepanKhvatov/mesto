@@ -1,91 +1,86 @@
 const editButton = document.querySelector('.profile__edit-button');
-const closeButton = document.querySelector('.popup__close-button');
-const submitButton = document.querySelector('.popup__submit-button');
+const submitButton = document.querySelectorAll('.popup__submit-button');
 const addButton = document.querySelector('.profile__add-button');
-let formElement = document.querySelector('.popup__form');
-let formHeading = document.querySelector('.popup__heading');
-let nameInput = document.querySelector('#input-name');
-let aboutInput = document.querySelector('#input-about');
-let profileName = document.querySelector('.profile__name');
-let profileAbout = document.querySelector('.profile__about');
-let popup = document.querySelector('.popup');
-let profile = document.querySelector('.profile');
-
 const photoPopup =  document.querySelector('.photo-popup');
 const photoPopupCloseButton = photoPopup.querySelector('.photo-popup__close-button');
+let profileName = document.querySelector('.profile__name');
+let profileAbout = document.querySelector('.profile__about');
+let profile = document.querySelector('.profile');
+let createPhotoPopup = document.querySelector('#createPhotoPopup');
+let changeProfilePopup = document.querySelector('#changeProfilePopup');
+let profileFormElement = document.querySelector('#profileForm');
+let photoFormElement = document.querySelector('#photoForm');
+let nameInput = document.querySelector('#input-name');
+let aboutInput = document.querySelector('#input-about');
+let placeInput = document.querySelector('#input-place');
+let linkInput = document.querySelector('#input-link');
 
-let newPhoto = {
-    name: undefined,
-    link: undefined
-};
+let newPhoto = {name: undefined, link: undefined};
 
-editButton.addEventListener('click', function showProfilePopup() {
-    popup.classList.remove('popup_closed');
-    popup.classList.add('popup_opened');
-    formHeading.textContent = 'Редактировать профиль';
-    submitButton.textContent = 'Сохранить';
-    nameInput.value = profileName.textContent;
-    aboutInput.value = profileAbout.textContent;
-    formElement.removeEventListener('submit', newPhotoSubmitHandler)
-    formElement.addEventListener('submit', formSubmitHandler);
-});
-
-addButton.addEventListener('click', function showNewPhotoPopup() {
-    popup.classList.remove('popup_closed');
-    popup.classList.add('popup_opened');
-    formHeading.textContent = 'Новое место';
-    submitButton.textContent = 'Создать';
-    nameInput.value = '';
-    aboutInput.value = '';
-    nameInput.placeholder = 'Название';
-    aboutInput.placeholder = 'Ссылка на картинку';
-    formElement.removeEventListener('submit', formSubmitHandler);
-    formElement.addEventListener('submit', newPhotoSubmitHandler);
-});
+const initialCards = [
+  {
+   name: 'Барнаул',
+   link: "./images/photo/barnaul.jpg"
+  },
+  {
+   name: 'Краснодар',
+   link: "./images/photo/krasnodar.jpg"
+  },
+  {
+   name: 'Мурманск',
+   link: "./images/photo/murmansk.jpg"
+  },
+  {
+   name: 'Новосибирск',
+   link: "./images/photo/novosibirsk.jpg"
+  },
+  {
+   name: 'Санкт-Петербург',
+   link: "./images/photo/peterburg.jpg"
+  },
+  {
+   name: 'Владивосток',
+   link: "./images/photo/vladivostok.jpg"
+  }
+];
 
 function newPhotoSubmitHandler(evt) {
-    evt.preventDefault();
-    newPhoto.name = nameInput.value;
-    newPhoto.link = aboutInput.value;
-    createCards(newPhoto);
-    popup.classList.remove('popup_opened');
+  evt.preventDefault();
+  newPhoto.name = placeInput.value;
+  newPhoto.link = linkInput.value;
+  createCards(newPhoto);
+  createPhotoPopup.classList.remove('popup_opened');
 };
 
 function formSubmitHandler(evt) {
-    evt.preventDefault();
-    profileName.textContent = nameInput.value;
-    profileAbout.textContent = aboutInput.value;
-    popup.classList.remove('popup_opened');
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileAbout.textContent = aboutInput.value;
+  changeProfilePopup.classList.remove('popup_opened');
 };
 
-const initialCards = [
-    {
-     name: 'Барнаул',
-     link: "./images/photo/barnaul.jpg"
-    },
-    {
-     name: 'Краснодар',
-     link: "./images/photo/krasnodar.jpg"
-    },
-    {
-     name: 'Мурманск',
-     link: "./images/photo/murmansk.jpg"
-    },
-    {
-     name: 'Новосибирск',
-     link: "./images/photo/novosibirsk.jpg"
-    },
-    {
-     name: 'Санкт-Петербург',
-     link: "./images/photo/peterburg.jpg"
-    },
-    {
-     name: 'Владивосток',
-     link: "./images/photo/vladivostok.jpg"
-    }
-];
+function tooglePopup(el) {
+    if (el === changeProfilePopup) {
+        return function() {
+            el.classList.add('popup_opened');
+            nameInput.value = profileName.textContent;
+            aboutInput.value = profileAbout.textContent;
+            profileFormElement.addEventListener('submit', formSubmitHandler);
+            profileFormElement.addEventListener('reset', () => el.classList.remove('popup_opened'));
+        };
+    } else if (el === createPhotoPopup) {
+        return function() {
+            el.classList.add('popup_opened');
+            photoFormElement.addEventListener('submit', newPhotoSubmitHandler);
+            photoFormElement.addEventListener('reset', () => el.classList.remove('popup_opened'));
+        };
+    };
+};
 
-initialCards.forEach(createCards);
+editButton.addEventListener('click', tooglePopup(changeProfilePopup));
+addButton.addEventListener('click', tooglePopup(createPhotoPopup));
+photoPopupCloseButton.addEventListener('click', (closePhotoPopup) => photoPopup.classList.remove('photo-popup_opened'));
+
 function createCards (el) {
     const photoContainer = document.querySelector('.photos');
     const photoTemplate = document.querySelector('#photo-template').content;
@@ -114,15 +109,7 @@ function createCards (el) {
     photoLikeButton.addEventListener('click', (likePhoto) => { photoLikeButton.classList.toggle('photo__like-button_active'); });
 };
 
-closeButton.addEventListener('click', function closePopup() {
-    popup.classList.remove('popup_opened');
-    popup.classList.add('popup_closed');
-});
-
-photoPopupCloseButton.addEventListener('click', function closePhotoPopup() {
-    photoPopup.classList.remove('photo-popup_opened');
-    photoPopup.classList.add('photo-popup_closed')
-});
+initialCards.forEach(createCards);
 
 
 

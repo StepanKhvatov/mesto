@@ -1,8 +1,7 @@
 .photo-popup_opened {
-  display: flex;
+  height: 100%;
   opacity: 1;
-  visibility: visible;
-  animation: fadeIn 0.3s;
+  transition: height 0ms 0ms, opacity 200ms 0ms;
 }
 
 

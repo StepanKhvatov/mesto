@@ -25,21 +25,32 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <div id="changeProfilePopup" class="popup">
     <div class="popup__container">
-      <form class="popup__form">
+      <form id="profileForm" class="popup__form">
         <button class="popup__close-button" type="reset"></button>
-        <h3 class="popup__heading"></h3>
+        <h3 class="popup__heading">Редактировать профиль</h3>
         <input id="input-name" class="popup__input" type="text" required>
         <input id="input-about" class="popup__input" type="text" required>
-        <button class="popup__submit-button" type="submit"></button>
+        <button class="popup__submit-button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div id="createPhotoPopup" class="popup">
+    <div class="popup__container">
+      <form id="photoForm" class="popup__form">
+        <button class="popup__close-button" type="reset"></button>
+        <h3 class="popup__heading">Новое место</h3>
+        <input id="input-place" class="popup__input" type="text" required placeholder="Название">
+        <input id="input-link" class="popup__input" type="text" required placeholder="Ссылка на картинку">
+        <button class="popup__submit-button" type="submit">Создать</button>
       </form>
     </div>
   </div>
   <div class="photo-popup">
     <figure class="photo-popup__image-container">
       <button class="photo-popup__close-button" type="reset"></button>
-      <img class="photo-popup__image" alt="Не определено" src="null">
+      <img class="photo-popup__image" alt="Не определено" src="https://example.com/">
       <figcaption class="photo-popup__caption"></figcaption>
     </figure>
   </div>
