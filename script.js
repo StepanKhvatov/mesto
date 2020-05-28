@@ -59,26 +59,24 @@ function formSubmitHandler(evt) {
   changeProfilePopup.classList.remove('popup_opened');
 };
 
-function tooglePopup(el) {
-    if (el === changeProfilePopup) {
-        return function() {
-            el.classList.add('popup_opened');
+function showPopup(el) {
+    return () => {
+        el.classList.add('popup_opened');
+        if (el === changeProfilePopup) {
             nameInput.value = profileName.textContent;
             aboutInput.value = profileAbout.textContent;
-            profileFormElement.addEventListener('submit', formSubmitHandler);
-            profileFormElement.addEventListener('reset', () => el.classList.remove('popup_opened'));
-        };
-    } else if (el === createPhotoPopup) {
-        return function() {
-            el.classList.add('popup_opened');
-            photoFormElement.addEventListener('submit', newPhotoSubmitHandler);
-            photoFormElement.addEventListener('reset', () => el.classList.remove('popup_opened'));
         };
     };
 };
 
-editButton.addEventListener('click', tooglePopup(changeProfilePopup));
-addButton.addEventListener('click', tooglePopup(createPhotoPopup));
+profileFormElement.addEventListener('submit', formSubmitHandler);
+profileFormElement.addEventListener('reset', () => changeProfilePopup.classList.remove('popup_opened'));
+
+photoFormElement.addEventListener('submit', newPhotoSubmitHandler);
+photoFormElement.addEventListener('reset', () => createPhotoPopup.classList.remove('popup_opened'));
+
+editButton.addEventListener('click', showPopup(changeProfilePopup));
+addButton.addEventListener('click', showPopup(createPhotoPopup));
 photoPopupCloseButton.addEventListener('click', (closePhotoPopup) => photoPopup.classList.remove('photo-popup_opened'));
 
 function createCards (el) {
