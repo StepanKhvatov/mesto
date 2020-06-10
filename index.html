@@ -27,22 +27,26 @@
   </footer>
   <div id="changeProfilePopup" class="popup">
     <div class="popup__container">
-      <form id="profileForm" class="popup__form">
+      <form id="profileForm" class="popup__form" novalidate>
         <button class="popup__close-button" type="reset"></button>
         <h3 class="popup__heading">Редактировать профиль</h3>
-        <input id="input-name" class="popup__input" type="text" required>
-        <input id="input-about" class="popup__input" type="text" required>
+        <input id="input-name" class="popup__input" type="text" minlength="2" maxlength="40" required placeholder="Имя">
+        <span id="input-name-error" class="popup__error"></span>
+        <input id="input-about" class="popup__input" type="text" minlength="2" maxlength="200" required placeholder="О себе">
+        <span id="input-about-error" class="popup__error"></span>
         <button class="popup__submit-button" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
   <div id="createPhotoPopup" class="popup">
     <div class="popup__container">
-      <form id="photoForm" class="popup__form">
+      <form id="photoForm" class="popup__form" novalidate>
         <button class="popup__close-button" type="reset"></button>
         <h3 class="popup__heading">Новое место</h3>
-        <input id="input-place" class="popup__input" type="text" required placeholder="Название">
-        <input id="input-link" class="popup__input" type="text" required placeholder="Ссылка на картинку">
+        <input id="input-place" class="popup__input" type="text" minlength="1" maxlength="30" required placeholder="Название">
+        <span id="input-place-error" class="popup__error"></span>
+        <input id="input-link" class="popup__input" type="url" required placeholder="Ссылка на картинку">
+        <span id="input-link-error" class="popup__error"></span>
         <button class="popup__submit-button" type="submit">Создать</button>
       </form>
     </div>
@@ -50,7 +54,7 @@
   <div class="photo-popup">
     <figure class="photo-popup__image-container">
       <button class="photo-popup__close-button" type="reset"></button>
-      <img class="photo-popup__image" alt="Не определено" src="https://example.com/">
+      <img class="photo-popup__image" alt="Не определено" src="./images/kusto_avatar.jpg">
       <figcaption class="photo-popup__caption"></figcaption>
     </figure>
   </div>
@@ -64,6 +68,7 @@
       </div>
     </article>
   </template>
-  <script src="script.js"></script>
+  <script src="./scripts/validate.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

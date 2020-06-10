@@ -17,3 +17,7 @@
   transition: height 0ms 400ms, opacity 200ms 0ms;
 }
 
+.photo-popup:hover {
+  cursor: pointer;
+}
+

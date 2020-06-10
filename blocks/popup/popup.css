@@ -3,7 +3,11 @@
 @import url(./__form/popup__form.css);
 @import url(./__heading/popup__heading.css);
 @import url(./__submit-button/popup__submit-button.css);
+@import url(./__submit-button/_disabled/popup__submit-button_disabled.css);
 @import url(./__input/popup__input.css);
+@import url(./__input/_type_error/popup__input_type_error.css);
+@import url(./__error/popup__error.css);
+@import url(./__error/_visible/popup__error_visible.css);
 
 
 .popup {
@@ -18,6 +22,10 @@
   height: 0;
   opacity: 0;
   transition: height 0ms 400ms, opacity 200ms 0ms;
+}
+
+.popup:hover {
+  cursor: pointer;
 }
 
 

@@ -3,11 +3,15 @@
   border: none;
   border-radius: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  margin-bottom: 30px;
   height: 27px;
   text-overflow: ellipsis;
   width: 100%;
   font-size: 0.875em;
   line-height: 17px;
+  padding: 0;
 }
 
+.popup__input:focus {
+  outline: none;
+
+}
