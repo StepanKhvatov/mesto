@@ -1,21 +1,20 @@
+const changeProfilePopup = document.querySelector('#changeProfilePopup');
 const editButton = document.querySelector('.profile__edit-button');
 const submitButton = document.querySelector('.popup__submit-button');
 const addButton = document.querySelector('.profile__add-button');
 const photoPopup =  document.querySelector('.photo-popup');
 const photoPopupCloseButton = photoPopup.querySelector('.photo-popup__close-button');
-let profileName = document.querySelector('.profile__name');
-let profileAbout = document.querySelector('.profile__about');
-const profile = document.querySelector('.profile');
+const profileName = document.querySelector('.profile__name');
+const profileAbout = document.querySelector('.profile__about');
 const createPhotoPopup = document.querySelector('#createPhotoPopup');
-const changeProfilePopup = document.querySelector('#changeProfilePopup');
 const profileFormElement = document.querySelector('#profileForm');
 const photoFormElement = document.querySelector('#photoForm');
 const photoSubmitButton = photoFormElement.querySelector('.popup__submit-button');
-let nameInput = document.querySelector('#input-name');
-let aboutInput = document.querySelector('#input-about');
-let placeInput = document.querySelector('#input-place');
-let linkInput = document.querySelector('#input-link');
-let newPhoto = {name: undefined, link: undefined};
+const nameInput = document.querySelector('#input-name');
+const aboutInput = document.querySelector('#input-about');
+const placeInput = document.querySelector('#input-place');
+const linkInput = document.querySelector('#input-link');
+const newPhoto = {name: undefined, link: undefined};
 const formValidationOptions = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -25,12 +24,51 @@ const formValidationOptions = {
     errorClass: 'popup__error_visible'
 };
 
+const addClickClose = (evt) => {
+  if (evt.target.classList.contains('popup')) {
+      evt.target.classList.remove('popup_opened');
+      document.removeEventListener('keydown', addEscapeClose);
+  } else if (evt.target.classList.contains('photo-popup')) {
+      evt.target.classList.remove('popup_opened');
+      document.removeEventListener('keydown', addEscapeClose);
+  }
+};
+
 const addEscapeClose = (evt) => {
   const openedPopup = document.querySelector('.popup_opened');
-  if (evt.keyCode == 27) {
+  if (evt.keyCode === 27) {
     openedPopup.classList.remove('popup_opened');
     document.removeEventListener('keydown', addEscapeClose);
   }
+};
+
+const createCards = (el) => {
+    const photoContainer = document.querySelector('.photos');
+    const photoTemplate = document.querySelector('#photo-template').content;
+    const photoElement = photoTemplate.cloneNode(true);
+    const photoPlace = photoElement.querySelector('.photo__place');
+    const photoTitle = photoElement.querySelector('.photo__title');
+    const photoLikeButton = photoElement.querySelector('.photo__like-button');
+    const photoDeleteButton = photoElement.querySelector('.photo__delete-button');
+
+    photoPlace.src = el.link;
+    photoPlace.alt = el.name;
+    photoTitle.textContent = el.name;
+    photoContainer.prepend(photoElement);
+
+    photoPlace.addEventListener('click', () => {
+        const photoPopupImage = document.querySelector('.photo-popup__image');
+        const photoPopupCaption = photoPopup.querySelector('.photo-popup__caption');
+        photoPopup.classList.add('popup_opened');
+        photoPopupImage.src = el.link;
+        photoPopupImage.alt = el.name;
+        photoPopupCaption.textContent = el.name;
+        document.addEventListener('keydown', addEscapeClose);
+        document.addEventListener('click', addClickClose);
+    });
+
+    photoDeleteButton.addEventListener('click', () => photoDeleteButton.parentElement.remove());
+    photoLikeButton.addEventListener('click', () => photoLikeButton.classList.toggle('photo__like-button_active'));
 };
 
 const newPhotoSubmitHandler = (evt) => {
@@ -48,16 +86,6 @@ const formSubmitHandler = (evt) => {
     profileAbout.textContent = aboutInput.value;
     changeProfilePopup.classList.remove('popup_opened');
     document.removeEventListener('keydown', addEscapeClose);
-};
-
-const addClickClose = (evt) => {
-    if (evt.target.classList.contains('popup')) {
-        evt.target.classList.remove('popup_opened');
-        document.removeEventListener('keydown', addEscapeClose);
-    } else if (evt.target.classList.contains('photo-popup')) {
-        evt.target.classList.remove('popup_opened');
-        document.removeEventListener('keydown', addEscapeClose);
-    }
 };
 
 const initialCards = [
@@ -86,35 +114,6 @@ const initialCards = [
    link: "./images/photo/vladivostok.jpg"
   }
 ];
-
-const createCards = (el) => {
-    const photoContainer = document.querySelector('.photos');
-    const photoTemplate = document.querySelector('#photo-template').content;
-    const photoElement = photoTemplate.cloneNode(true);
-    const photoPlace = photoElement.querySelector('.photo__place');
-    const photoTitle = photoElement.querySelector('.photo__title');
-    const photoLikeButton = photoElement.querySelector('.photo__like-button');
-    const photoDeleteButton = photoElement.querySelector('.photo__delete-button');
-
-    photoPlace.src = el.link;
-    photoPlace.alt = el.name;
-    photoTitle.textContent = el.name;
-    photoContainer.prepend(photoElement);
-
-    photoPlace.addEventListener('click', function showPhotoPopup() {
-        const photoPopupImage = document.querySelector('.photo-popup__image');
-        const photoPopupCaption = photoPopup.querySelector('.photo-popup__caption');
-        photoPopup.classList.add('popup_opened');
-        photoPopupImage.src = el.link;
-        photoPopupImage.alt = el.name;
-        photoPopupCaption.textContent = el.name;
-        document.addEventListener('keydown', addEscapeClose);
-        document.addEventListener('click', addClickClose);
-    });
-
-    photoDeleteButton.addEventListener('click', (deletePhoto) => { photoDeleteButton.parentElement.remove(); });
-    photoLikeButton.addEventListener('click', (likePhoto) => { photoLikeButton.classList.toggle('photo__like-button_active'); });
-};
 
 const resetErrors =  (el) => {
     const errorList = el.querySelectorAll('.popup__error');
@@ -156,13 +155,23 @@ photoFormElement.addEventListener('reset', () => {
 });
 editButton.addEventListener('click', showPopup(changeProfilePopup));
 addButton.addEventListener('click', showPopup(createPhotoPopup));
-photoPopupCloseButton.addEventListener('click', (closePhotoPopup) => {
+photoPopupCloseButton.addEventListener('click', () => {
   photoPopup.classList.remove('popup_opened');
   document.removeEventListener('keydown', addEscapeClose);
 });
 
 initialCards.forEach(createCards);
 enableValidation(formValidationOptions);
+
+
+/*Дорогой Семён, надеюсь это письмо застанет тебя в здравии и достатке.
+У меня всё прекрасно, хотелось бы чтобы было больше часов в сутках, очень многое не успеваю.
+Времена меняются медленно, но верно. Именно такие, как ты, изменят мир к лучшему.
+Я безумно горд каждый раз, получая от тебя вести. Впереди у нас ещё очень долгий путь, но пока мы вместе, я уверен в успехе.
+Надеюсь наши пути в будущем пересекутся, а до тех пор я остаюсь твоим другом.
+Старушка Мэри Тодд зовёт меня, так что, пожалуй, пора идти спать.
+
+С почтением, Хватов Степан.*/
 
 
 
