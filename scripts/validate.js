@@ -5,7 +5,7 @@ function handleFormInput(formElement, submitButton, inactiveButtonClass){
         inactiveButtonClass,
         hasErrors
     );
-};
+}
 
 function handleInput(evt, inputErrorClass, errorClassVisible) {
     const input = evt.target;
@@ -14,27 +14,27 @@ function handleInput(evt, inputErrorClass, errorClassVisible) {
 
     if (isInputValid) {
         input.classList.remove(inputErrorClass);
-        error.classList.remove(errorClassVisible)
+        error.classList.remove(errorClassVisible);
         error.textContent = '';
     } else {
         input.classList.add(inputErrorClass);
-        error.classList.add(errorClassVisible)
+        error.classList.add(errorClassVisible);
         error.textContent = input.validationMessage;
     }
-};
+}
 
 function enableValidation(options) {
     const formElements = Array.from(document.querySelectorAll(options.formSelector));
-    formElements.forEach(formElement => {
+    formElements.forEach((formElement) => {
         const inputElements = Array.from(formElement.querySelectorAll(options.inputSelector));
         const submitButton = formElement.querySelector('.popup__submit-button');
-        inputElements.forEach(input => {
-            input.addEventListener('input', e => handleInput(e, options.inputErrorClass, options.errorClass))
+        inputElements.forEach((input) => {
+            input.addEventListener('input', (e) => handleInput(e, options.inputErrorClass, options.errorClass));
         });
 
-        formElement.addEventListener('input', () => handleFormInput(formElement, submitButton, options.inactiveButtonClass))
+        formElement.addEventListener('input', () => handleFormInput(formElement, submitButton, options.inactiveButtonClass));
     });
-};
+}
 
 
 

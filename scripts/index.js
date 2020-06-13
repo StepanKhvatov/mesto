@@ -24,6 +24,15 @@ const formValidationOptions = {
     errorClass: 'popup__error_visible'
 };
 
+const addEscapeClose = (evt) => {
+  const openedPopup = document.querySelector('.popup_opened');
+  const escKeyCode = 27;
+  if (evt.keyCode === escKeyCode) {
+    openedPopup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', addEscapeClose);
+  }
+};
+
 const addClickClose = (evt) => {
   if (evt.target.classList.contains('popup')) {
       evt.target.classList.remove('popup_opened');
@@ -31,14 +40,6 @@ const addClickClose = (evt) => {
   } else if (evt.target.classList.contains('photo-popup')) {
       evt.target.classList.remove('popup_opened');
       document.removeEventListener('keydown', addEscapeClose);
-  }
-};
-
-const addEscapeClose = (evt) => {
-  const openedPopup = document.querySelector('.popup_opened');
-  if (evt.keyCode === 27) {
-    openedPopup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', addEscapeClose);
   }
 };
 
@@ -119,7 +120,7 @@ const resetErrors =  (el) => {
     const errorList = el.querySelectorAll('.popup__error');
     const inputList = el.querySelectorAll('.popup__input');
     errorList.forEach((error) => {
-      error.classList.remove('popup__error_visible')
+      error.classList.remove('popup__error_visible');
     });
     inputList.forEach((input) => {
       input.classList.remove('popup__input_type_error');
@@ -135,9 +136,9 @@ const showPopup = (el) => {
         if (el === changeProfilePopup) {
             nameInput.value = profileName.textContent;
             aboutInput.value = profileAbout.textContent;
-            handleFormInput(profileFormElement, submitButton, formValidationOptions.inactiveButtonClass)
+            handleFormInput(profileFormElement, submitButton, formValidationOptions.inactiveButtonClass);
         } else if (el === createPhotoPopup) {
-            handleFormInput(photoFormElement, photoSubmitButton, formValidationOptions.inactiveButtonClass)
+            handleFormInput(photoFormElement, photoSubmitButton, formValidationOptions.inactiveButtonClass);
         }
     };
 };

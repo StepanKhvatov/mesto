@@ -16,9 +16,9 @@
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <p class="profile__about">Исследователь океана</p>
-        <button class="profile__edit-button" type="button"></button>
+        <button class="profile__edit-button" type="button" aria-label="Кнопка редактирования профиля"></button>
       </div>
-      <button class="profile__add-button"></button>
+      <button class="profile__add-button" aria-label="Кнопка добавления фото места"></button>
     </section>
     <section class="photos"></section>
   </main>
@@ -28,7 +28,7 @@
   <div id="changeProfilePopup" class="popup">
     <div class="popup__container">
       <form id="profileForm" class="popup__form" novalidate>
-        <button class="popup__close-button" type="reset"></button>
+        <button class="popup__close-button" type="reset" aria-label="Закрыть"></button>
         <h3 class="popup__heading">Редактировать профиль</h3>
         <input id="input-name" class="popup__input" type="text" minlength="2" maxlength="40" required placeholder="Имя">
         <span id="input-name-error" class="popup__error"></span>
@@ -41,7 +41,7 @@
   <div id="createPhotoPopup" class="popup">
     <div class="popup__container">
       <form id="photoForm" class="popup__form" novalidate>
-        <button class="popup__close-button" type="reset"></button>
+        <button class="popup__close-button" type="reset" aria-label="Закрыть"></button>
         <h3 class="popup__heading">Новое место</h3>
         <input id="input-place" class="popup__input" type="text" minlength="1" maxlength="30" required placeholder="Название">
         <span id="input-place-error" class="popup__error"></span>
@@ -52,19 +52,19 @@
     </div>
   </div>
   <div class="photo-popup">
-    <figure class="photo-popup__image-container">
-      <button class="photo-popup__close-button" type="reset"></button>
+    <div class="photo-popup__image-container">
+      <button class="photo-popup__close-button" type="reset" aria-label="Закрыть"></button>
       <img class="photo-popup__image" alt="Не определено" src="./images/kusto_avatar.jpg">
-      <figcaption class="photo-popup__caption"></figcaption>
-    </figure>
+      <p class="photo-popup__caption"></p>
+    </div>
   </div>
   <template id="photo-template">
     <article class="photo">
-      <button class="photo__delete-button" type="button"></button>
+      <button class="photo__delete-button" type="button" aria-label="Удалить фото"></button>
       <img class="photo__place">
       <div class="photo__caption">
         <h2 class="photo__title"></h2>
-        <button class="photo__like-button" type="button"></button>
+        <button class="photo__like-button" type="button" aria-label="Добавить лайк"></button>
       </div>
     </article>
   </template>
