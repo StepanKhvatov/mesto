@@ -1,6 +1,8 @@
+import {initialCards} from './utils.js';
+import {FormValidator} from './FormValidator.js';
+import {Card} from './Card.js';
 const changeProfilePopup = document.querySelector('#changeProfilePopup');
 const editButton = document.querySelector('.profile__edit-button');
-const submitButton = document.querySelector('.popup__submit-button');
 const addButton = document.querySelector('.profile__add-button');
 const photoPopup =  document.querySelector('.photo-popup');
 const photoPopupCloseButton = photoPopup.querySelector('.photo-popup__close-button');
@@ -9,22 +11,26 @@ const profileAbout = document.querySelector('.profile__about');
 const createPhotoPopup = document.querySelector('#createPhotoPopup');
 const profileFormElement = document.querySelector('#profileForm');
 const photoFormElement = document.querySelector('#photoForm');
-const photoSubmitButton = photoFormElement.querySelector('.popup__submit-button');
 const nameInput = document.querySelector('#input-name');
 const aboutInput = document.querySelector('#input-about');
 const placeInput = document.querySelector('#input-place');
 const linkInput = document.querySelector('#input-link');
-const newPhoto = {name: undefined, link: undefined};
+const photoContainer = document.querySelector('.photos');
 const formValidationOptions = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__submit-button',
-    inactiveButtonClass: 'popup__submit-button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible',
+  inactiveErrorClass: 'popup__error'
 };
+const profileForm = new FormValidator(formValidationOptions, profileFormElement);
+profileForm.enableValidation();
+const photoForm = new FormValidator(formValidationOptions, photoFormElement);
+photoForm.enableValidation();
 
-const addEscapeClose = (evt) => {
+export const addEscapeClose = (evt) => {
   const openedPopup = document.querySelector('.popup_opened');
   const escKeyCode = 27;
   if (evt.keyCode === escKeyCode) {
@@ -43,78 +49,24 @@ const addClickClose = (evt) => {
   }
 };
 
-const createCards = (el) => {
-    const photoContainer = document.querySelector('.photos');
-    const photoTemplate = document.querySelector('#photo-template').content;
-    const photoElement = photoTemplate.cloneNode(true);
-    const photoPlace = photoElement.querySelector('.photo__place');
-    const photoTitle = photoElement.querySelector('.photo__title');
-    const photoLikeButton = photoElement.querySelector('.photo__like-button');
-    const photoDeleteButton = photoElement.querySelector('.photo__delete-button');
-
-    photoPlace.src = el.link;
-    photoPlace.alt = el.name;
-    photoTitle.textContent = el.name;
-    photoContainer.prepend(photoElement);
-
-    photoPlace.addEventListener('click', () => {
-        const photoPopupImage = document.querySelector('.photo-popup__image');
-        const photoPopupCaption = photoPopup.querySelector('.photo-popup__caption');
-        photoPopup.classList.add('popup_opened');
-        photoPopupImage.src = el.link;
-        photoPopupImage.alt = el.name;
-        photoPopupCaption.textContent = el.name;
-        document.addEventListener('keydown', addEscapeClose);
-        document.addEventListener('click', addClickClose);
-    });
-
-    photoDeleteButton.addEventListener('click', () => photoDeleteButton.parentElement.remove());
-    photoLikeButton.addEventListener('click', () => photoLikeButton.classList.toggle('photo__like-button_active'));
-};
-
 const newPhotoSubmitHandler = (evt) => {
-    evt.preventDefault();
-    newPhoto.name = placeInput.value;
-    newPhoto.link = linkInput.value;
-    createCards(newPhoto);
+    evt.preventDefault()
+    const card = new Card(linkInput.value, placeInput.value, '#photo-template');
+    const cardElement = card.generateCard();
+    photoContainer.prepend(cardElement);
+    placeInput.value = '';
+    linkInput.value = '';
     createPhotoPopup.classList.remove('popup_opened');
     document.removeEventListener('keydown', addEscapeClose);
 };
 
 const formSubmitHandler = (evt) => {
-    evt.preventDefault();
+    evt.preventDefault()
     profileName.textContent = nameInput.value;
     profileAbout.textContent = aboutInput.value;
     changeProfilePopup.classList.remove('popup_opened');
     document.removeEventListener('keydown', addEscapeClose);
 };
-
-const initialCards = [
-  {
-   name: 'Барнаул',
-   link: "./images/photo/barnaul.jpg"
-  },
-  {
-   name: 'Краснодар',
-   link: "./images/photo/krasnodar.jpg"
-  },
-  {
-   name: 'Мурманск',
-   link: "./images/photo/murmansk.jpg"
-  },
-  {
-   name: 'Новосибирск',
-   link: "./images/photo/novosibirsk.jpg"
-  },
-  {
-   name: 'Санкт-Петербург',
-   link: "./images/photo/peterburg.jpg"
-  },
-  {
-   name: 'Владивосток',
-   link: "./images/photo/vladivostok.jpg"
-  }
-];
 
 const resetErrors =  (el) => {
     const errorList = el.querySelectorAll('.popup__error');
@@ -136,9 +88,9 @@ const showPopup = (el) => {
         if (el === changeProfilePopup) {
             nameInput.value = profileName.textContent;
             aboutInput.value = profileAbout.textContent;
-            handleFormInput(profileFormElement, submitButton, formValidationOptions.inactiveButtonClass);
+            profileForm.handleFormInput();
         } else if (el === createPhotoPopup) {
-            handleFormInput(photoFormElement, photoSubmitButton, formValidationOptions.inactiveButtonClass);
+            photoForm.handleFormInput();
         }
     };
 };
@@ -161,18 +113,16 @@ photoPopupCloseButton.addEventListener('click', () => {
   document.removeEventListener('keydown', addEscapeClose);
 });
 
-initialCards.forEach(createCards);
-enableValidation(formValidationOptions);
+initialCards.forEach((el) => {
+  const card = new Card(el.link, el.name, '#photo-template');
+  const cardElement = card.generateCard();
+  photoContainer.prepend(cardElement);
+});
+
+                                                /* Привет, Сёма!!! */
 
 
-/*Дорогой Семён, надеюсь это письмо застанет тебя в здравии и достатке.
-У меня всё прекрасно, хотелось бы чтобы было больше часов в сутках, очень многое не успеваю.
-Времена меняются медленно, но верно. Именно такие, как ты, изменят мир к лучшему.
-Я безумно горд каждый раз, получая от тебя вести. Впереди у нас ещё очень долгий путь, но пока мы вместе, я уверен в успехе.
-Надеюсь наши пути в будущем пересекутся, а до тех пор я остаюсь твоим другом.
-Старушка Мэри Тодд зовёт меня, так что, пожалуй, пора идти спать.
 
-С почтением, Хватов Степан.*/
 
 
 

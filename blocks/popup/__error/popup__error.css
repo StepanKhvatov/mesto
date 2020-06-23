@@ -8,5 +8,5 @@
   opacity: 0;
   display: block;
   color: #FF0000;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.1s linear;
 }
