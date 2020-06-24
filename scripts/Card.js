@@ -1,4 +1,5 @@
 import {addEscapeClose} from './index.js';
+
 export class Card {
   constructor(link, name, cardSelector) {
     this._link = link;

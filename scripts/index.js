@@ -1,6 +1,7 @@
 import {initialCards} from './utils.js';
 import {FormValidator} from './FormValidator.js';
 import {Card} from './Card.js';
+
 const changeProfilePopup = document.querySelector('#changeProfilePopup');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
@@ -55,7 +56,7 @@ const newPhotoSubmitHandler = (evt) => {
     const cardElement = card.generateCard();
     photoContainer.prepend(cardElement);
     placeInput.value = '';
-    linkInput.value = '';
+    linkInput.value = ''; // add form.reset()
     createPhotoPopup.classList.remove('popup_opened');
     document.removeEventListener('keydown', addEscapeClose);
 };
@@ -119,7 +120,6 @@ initialCards.forEach((el) => {
   photoContainer.prepend(cardElement);
 });
 
-                                                /* Привет, Сёма!!! */
 
 
 
