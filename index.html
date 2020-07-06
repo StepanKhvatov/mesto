@@ -28,11 +28,11 @@
   <div id="changeProfilePopup" class="popup">
     <div class="popup__container">
       <form id="profileForm" class="popup__form" novalidate>
-        <button class="popup__close-button" type="reset" aria-label="Закрыть"></button>
+        <button id="close-button" class="popup__close-button" type="reset" aria-label="Закрыть"></button>
         <h3 class="popup__heading">Редактировать профиль</h3>
-        <input id="input-name" class="popup__input" type="text" minlength="2" maxlength="40" required placeholder="Имя" autocomplete="off">
-        <span id="input-name-error" class="popup__error"></span>
-        <input id="input-about" class="popup__input" type="text" minlength="2" maxlength="200" required placeholder="О себе" autocomplete="off">
+        <input id="input-name" name="name" class="popup__input" type="text" minlength="2" maxlength="40" required placeholder="Имя" autocomplete="off">
+        <span id="input-name-error"  class="popup__error"></span>
+        <input id="input-about" name="about" class="popup__input" type="text" minlength="2" maxlength="200" required placeholder="О себе" autocomplete="off">
         <span id="input-about-error" class="popup__error"></span>
         <button class="popup__submit-button" type="submit">Сохранить</button>
       </form>
@@ -41,11 +41,11 @@
   <div id="createPhotoPopup" class="popup">
     <div class="popup__container">
       <form id="photoForm" class="popup__form" novalidate>
-        <button class="popup__close-button" type="reset" aria-label="Закрыть"></button>
+        <button id="close-button" class="popup__close-button" type="reset" aria-label="Закрыть"></button>
         <h3 class="popup__heading">Новое место</h3>
-        <input id="input-place" class="popup__input" type="text" minlength="1" maxlength="30" required placeholder="Название" autocomplete="off">
+        <input id="input-place" name="place" class="popup__input" type="text" minlength="1" maxlength="30" required placeholder="Название" autocomplete="off">
         <span id="input-place-error" class="popup__error"></span>
-        <input id="input-link" class="popup__input" type="url" required placeholder="Ссылка на картинку" autocomplete="off">
+        <input id="input-link" name="link" class="popup__input" type="url" required placeholder="Ссылка на картинку" autocomplete="off">
         <span id="input-link-error" class="popup__error"></span>
         <button class="popup__submit-button" type="submit">Создать</button>
       </form>
@@ -53,7 +53,7 @@
   </div>
   <div class="photo-popup">
     <div class="photo-popup__image-container">
-      <button class="photo-popup__close-button" type="reset" aria-label="Закрыть"></button>
+      <button id="close-button" class="photo-popup__close-button" type="reset" aria-label="Закрыть"></button>
       <img class="photo-popup__image" alt="Не определено" src="./images/kusto_avatar.jpg">
       <p class="photo-popup__caption"></p>
     </div>
@@ -68,9 +68,6 @@
       </div>
     </article>
   </template>
-  <script type="module" src="./scripts/utils.js"></script>
-  <script type="module" src="./scripts/FormValidator.js"></script>
-  <script type="module" src="./scripts/index.js"></script>
-  <script type="module" src="./scripts/Card.js"></script>
+  <script type="module" src="./pages/index.js"></script>
 </body>
 </html>
