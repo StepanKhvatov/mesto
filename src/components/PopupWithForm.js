@@ -28,22 +28,22 @@ export default class PopupWithForm extends Popup {
       });
   }
 
-  _resetErrors() {
-      const errorList = this._popup.querySelectorAll('.popup__error');
-      const inputList = this._popup.querySelectorAll('.popup__input');
+  // _resetErrors() {
+  //     const errorList = this._popup.querySelectorAll('.popup__error');
+  //     const inputList = this._popup.querySelectorAll('.popup__input');
 
-      errorList.forEach((error) => {
-          error.classList.remove('popup__error_visible');
-      });
+  //     errorList.forEach((error) => {
+  //         error.classList.remove('popup__error_visible');
+  //     });
 
-      inputList.forEach((input) => {
-          input.classList.remove('popup__input_type_error');
-      });
-  }
+  //     inputList.forEach((input) => {
+  //         input.classList.remove('popup__input_type_error');
+  //     });
+  // }
 
   close() {
       super.close();
-      this._resetErrors();
+      // this._resetErrors();
       this._form.reset();
   }
 }

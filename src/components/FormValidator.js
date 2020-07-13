@@ -27,6 +27,19 @@ export default class FormValidator {
         }
     }
 
+    resetErrors() {
+        const errorList = this._formElement.querySelectorAll('.popup__error');
+        const inputList = this._formElement.querySelectorAll('.popup__input');
+
+        errorList.forEach((error) => {
+            error.classList.remove('popup__error_visible');
+        });
+
+        inputList.forEach((input) => {
+            input.classList.remove('popup__input_type_error');
+        });
+    }
+
     _setEventListeners() {
         const inputElements = Array.from(this._formElement.querySelectorAll(this._formSelectors.inputSelector));
         inputElements.forEach((input) => {

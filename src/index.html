@@ -27,7 +27,7 @@
   <div id="changeProfilePopup" class="popup">
     <div class="popup__container">
       <form id="profileForm" class="popup__form" novalidate>
-        <button id="close-button" class="popup__close-button" type="reset" aria-label="Закрыть"></button>
+        <button class="popup__close-button" type="reset" aria-label="Закрыть"></button>
         <h3 class="popup__heading">Редактировать профиль</h3>
         <input id="input-name" name="name" class="popup__input" type="text" minlength="2" maxlength="40" required placeholder="Имя" autocomplete="off">
         <span id="input-name-error"  class="popup__error"></span>
@@ -40,9 +40,9 @@
   <div id="createPhotoPopup" class="popup">
     <div class="popup__container">
       <form id="photoForm" class="popup__form" novalidate>
-        <button id="close-button" class="popup__close-button" type="reset" aria-label="Закрыть"></button>
+        <button class="popup__close-button" type="reset" aria-label="Закрыть"></button>
         <h3 class="popup__heading">Новое место</h3>
-        <input id="input-place" name="place" class="popup__input" type="text" minlength="1" maxlength="30" required placeholder="Название" autocomplete="off">
+        <input id="input-place" name="name" class="popup__input" type="text" minlength="1" maxlength="30" required placeholder="Название" autocomplete="off">
         <span id="input-place-error" class="popup__error"></span>
         <input id="input-link" name="link" class="popup__input" type="url" required placeholder="Ссылка на картинку" autocomplete="off">
         <span id="input-link-error" class="popup__error"></span>
@@ -50,11 +50,11 @@
       </form>
     </div>
   </div>
-  <div class="photo-popup">
-    <div class="photo-popup__image-container">
-      <button id="close-button" class="photo-popup__close-button" type="reset" aria-label="Закрыть"></button>
-      <img class="photo-popup__image" alt="Не определено" src="./images/kusto_avatar.jpg">
-      <p class="photo-popup__caption"></p>
+  <div id="photoPopup" class="popup">
+    <div class="popup__image-container">
+      <button class="popup__close-button" type="reset" aria-label="Закрыть"></button>
+      <img class="popup__image" alt="Не определено" src="./images/kusto_avatar.jpg">
+      <p class="popup__caption"></p>
     </div>
   </div>
   <template id="photo-template">

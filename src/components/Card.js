@@ -28,9 +28,11 @@ export default class Card {
   generateCard() {
       this._element = this._getTemplate();
       this._setEventListeners();
-      this._element.querySelector('.photo__place').src = this._link;
-      this._element.querySelector('.photo__place').alt = this._name;
-      this._element.querySelector('.photo__title').textContent = this._name;
+      const photoPlace = this._element.querySelector('.photo__place');
+      const photoTitle = this._element.querySelector('.photo__title');
+      photoPlace.src = this._link;
+      photoPlace.alt = this._name;
+      photoTitle.textContent = this._name;
       return this._element;
   }
 
