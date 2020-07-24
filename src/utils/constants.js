@@ -42,3 +42,11 @@ export const initialCards = [
    link: vladivostok
   }
 ];
+
+export const config = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-13',
+  headers: {
+    authorization: '0fb698c6-c0f4-4661-887b-6a574c3a11ac',
+    'Content-Type': 'application/json'
+  }
+}

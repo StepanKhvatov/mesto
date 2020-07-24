@@ -11,7 +11,10 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="images/kusto_avatar.jpg" alt="Жак-Ив Кусто">
+      <div class="profile__avatar-container">
+        <img class="profile__avatar" src="images/kusto_avatar.jpg" alt="Жак-Ив Кусто">
+        <div class="profile__wrapper"></div>
+      </div>
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <p class="profile__about">Исследователь океана</p>
@@ -50,6 +53,31 @@
       </form>
     </div>
   </div>
+
+
+  <div id="deletePhotoPopup" class="popup">
+    <div class="popup__container">
+      <form id="deleteForm" class="popup__form">
+        <buttton class="popup__close-button" type="reset" aria-label="Закрыть"></buttton>
+        <h3 class="popup__heading">Вы уверены?</h3>
+        <button class="popup__submit-button" type="button">Да</button>
+        </form>
+    </div>
+  </div>
+
+  <div id="changeAvatarPopup" class="popup">
+    <div class="popup__container">
+      <form id="avatarForm" class="popup__form">
+        <buttton class="popup__close-button" type="reset" aria-label="Закрыть"></buttton>
+        <h3 class="popup__heading">Обновить аватар</h3>
+        <input id="input-link" name="link" class="popup__input" type="url" required placeholder="Ссылка на картинку" autocomplete="off">
+        <span id="input-link-error" class="popup__error"></span>
+        <button class="popup__submit-button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+
   <div id="photoPopup" class="popup">
     <div class="popup__image-container">
       <button class="popup__close-button" type="reset" aria-label="Закрыть"></button>
@@ -63,7 +91,10 @@
       <img class="photo__place">
       <div class="photo__caption">
         <h2 class="photo__title"></h2>
-        <button class="photo__like-button" type="button" aria-label="Добавить лайк"></button>
+        <div class="photo__like-container">
+          <button class="photo__like-button" type="button" aria-label="Добавить лайк"></button>
+          <p class="photo__likes">0</p>
+        </div>
       </div>
     </article>
   </template>
