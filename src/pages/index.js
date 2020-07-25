@@ -32,13 +32,19 @@ api.getUserInfo()
         info.setUserAvatar(res);
         myId = res._id;
     })
+    .catch((err) => { console.log(err) })
 
 const changeProfilePopup = new PopupWithForm({
     popupSelector: '#changeProfilePopup',
     handleSubmit: (newInfo) => {
+        changeProfilePopup.renderLoading(true);
         api.setUserInfo(newInfo.name, newInfo.about)
             .then(() => { info.setUserInfo(newInfo) })
-            .finally(() => { changeProfilePopup.renderLoading(true) })
+            .catch((err) => { console.log(err) })
+            .finally(() => {
+                changeProfilePopup.renderLoading(false, 'Сохранить');
+                changeProfilePopup.close();
+              })
     }
 });
 changeProfilePopup.setEventListeners();
@@ -46,9 +52,14 @@ changeProfilePopup.setEventListeners();
 const changeAvatarPopup = new PopupWithForm({
     popupSelector: '#changeAvatarPopup',
     handleSubmit: (newInfo) => {
+        changeAvatarPopup.renderLoading(true);
         api.changeAvatar(newInfo.link)
             .then((res) => { info.setUserAvatar(res)})
-            .finally(() => { changeAvatarPopup.renderLoading(true) })
+            .catch((err) => { console.log(err) })
+            .finally(() => {
+                changeAvatarPopup.renderLoading(false, 'Сохранить');
+                changeAvatarPopup.close();
+             })
     }
 });
 changeAvatarPopup.setEventListeners();
@@ -67,7 +78,6 @@ avatarForm.enableValidation();
 
 editButton.addEventListener('click', () => {
     changeProfilePopup.open();
-    changeProfilePopup.renderLoading(false, 'Сохранить')
     const currentInfo = info.getUserInfo();
     profileNameInput.value = currentInfo.name;
     profileAboutInput.value = currentInfo.about;
@@ -77,7 +87,6 @@ editButton.addEventListener('click', () => {
 
 avatarButton.addEventListener('click', () => {
     changeAvatarPopup.open();
-    changeAvatarPopup.renderLoading(false, 'Сохранить')
     avatarForm.handleFormInput();
     avatarForm.resetErrors();
 });
@@ -86,7 +95,7 @@ api.getInitialCards()
   .then((res) => {
       const renderCard = (item) => {
           const deletePhotoPopup = new PopupWithDelete({ popupSelector: '#deletePhotoPopup' }); // создание попапа подтверждения удаления карточки
-          let isLiked = item.likes.some((like) => like._id === myId); //'a790a637f5bca2ced09a913b'
+          let isLiked = item.likes.some((like) => like._id === myId);
           const isOwner = item.owner._id === myId;
           const card = new Card({
               link: item.link,
@@ -100,6 +109,8 @@ api.getInitialCards()
                   deletePhotoPopup.setSubmit(() => {
                       api.deleteCard(item._id)
                           .then(() => { card.deletePhoto() })
+                          .catch((err) => { console.log(err) })
+                          .finally(() => { deletePhotoPopup.close() })
                   })
                   deletePhotoPopup.setEventListeners();
                   deletePhotoPopup.open();
@@ -108,9 +119,11 @@ api.getInitialCards()
                   if (!isLiked) {
                       api.putLike(item._id)
                         .then(() => { isLiked = !isLiked })
+                        .catch((err) => { console.log(err) })
                   } else {
                       api.deleteLike(item._id)
                         .then(() => { isLiked = !isLiked })
+                        .catch((err) => { console.log(err) })
                   }
               }
           });
@@ -123,16 +136,20 @@ api.getInitialCards()
       const createPhotoPopup = new PopupWithForm({
           popupSelector: '#createPhotoPopup',
           handleSubmit: (data) => {
+              createPhotoPopup.renderLoading(true);
               api.postCard(data)
                 .then(renderCard)
-                .finally(() => { createPhotoPopup.renderLoading(true) })
+                .catch((err) => { console.log(err) })
+                .finally(() => {
+                    createPhotoPopup.renderLoading(false, 'Создать');
+                    createPhotoPopup.close();
+                })
           }
       });
       createPhotoPopup.setEventListeners();
 
       addButton.addEventListener('click', () => {
           createPhotoPopup.open();
-          createPhotoPopup.renderLoading(false, 'Создать')
           photoForm.handleFormInput();
           photoForm.resetErrors();
       });
@@ -144,3 +161,4 @@ api.getInitialCards()
         });
       cardList.renderItems();
   })
+  .catch((err) => { console.log(err) })

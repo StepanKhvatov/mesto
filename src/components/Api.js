@@ -12,10 +12,6 @@ export default class Api {
         }
     }
 
-    _handleResponseError(err) {
-        return Promise.reject(err.message)
-    }
-
     getInitialCards() {
         return fetch(
             `${this.url}/cards`,
@@ -25,7 +21,6 @@ export default class Api {
         )
 
         .then(this._handleResponse)
-        .catch(this._handleResponseError)
     }
 
     postCard(data) {
@@ -42,7 +37,6 @@ export default class Api {
         )
 
         .then(this._handleResponse)
-        .catch(this._handleResponseError)
     }
 
      deleteCard(id) {
@@ -55,7 +49,6 @@ export default class Api {
         )
 
         .then(this._handleResponse)
-        .catch(this._handleResponseError)
      }
 
      changeAvatar(link) {
@@ -71,7 +64,6 @@ export default class Api {
         )
 
         .then(this._handleResponse)
-        .catch(this._handleResponseError)
      }
 
      setUserInfo(name, about) {
@@ -88,7 +80,6 @@ export default class Api {
         )
 
         .then(this._handleResponse)
-        .catch(this._handleResponseError)
      }
 
      getUserInfo() {
@@ -100,7 +91,6 @@ export default class Api {
         )
 
         .then(this._handleResponse)
-        .catch(this._handleResponseError)
      }
 
      putLike(id) {
@@ -113,7 +103,6 @@ export default class Api {
         )
 
         .then(this._handleResponse)
-        .catch(this._handleResponseError)
      }
 
      deleteLike(id) {
@@ -126,16 +115,5 @@ export default class Api {
         )
 
         .then(this._handleResponse)
-        .catch(this._handleResponseError)
      }
-
-
-
-
-
 }
-
-
-// Токен: 0fb698c6-c0f4-4661-887b-6a574c3a11ac
-// Идентификатор группы: cohort-13
-//Новый экземляр класса нужно обьявить внутри then
